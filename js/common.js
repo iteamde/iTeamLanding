@@ -51,7 +51,38 @@ $(document).ready(function() {
       setInterval(function(){
         $('.fa-envelope').toggleClass("animated wobble");
     },2000);
+
+    var verticalAmount1 = 0;
+    var verticalSpeedImage1 = 1.7;
+    var verticalAmount2 = 0;
+    var verticalSpeedImage2 = 2;
        $(window).scroll(function() {
+           $('#parallax .container').each(function(){
+               var scrollHeight = Math.max(
+                   document.body.scrollHeight, document.documentElement.scrollHeight,
+                   document.body.offsetHeight, document.documentElement.offsetHeight,
+                   document.body.clientHeight, document.documentElement.clientHeight
+               );
+               var that=$(this);
+               var height = that.offset().top - $(window).scrollTop();
+               console.log( window.pageYOffset, scrollHeight );
+               if(Math.abs(height) < 600){
+                   var img1 = that.find('.image-wrapper:first-child img');
+                   var img2 = that.find('.image-wrapper:nth-child(2) img');
+                   verticalAmount1 += (height>0?  -verticalSpeedImage1: verticalSpeedImage1);
+                   verticalAmount2 += (height>0?  -verticalSpeedImage2: verticalSpeedImage2);
+                   img1.css({'transform': 'translateX(0px) ' +
+                       'translateY(' + verticalAmount1 + 'px) ' +
+                       ' translateZ(0px) ' +
+                       'rotate3d(1,1,1,' + height*0.01+ 'deg)'  });
+                   img2.css({'transform': 'translateX(0px) ' +
+                       'translateY(' + verticalAmount2 + 'px) ' +
+                       ' translateZ(0px) ' +
+                       'rotate3d(1,1,1,' + height*0.03+ 'deg)'  });
+               }
+           });
+
+           //translateX(0px) translateY(0.507313vh) translateZ(0px) rotate(-0.253657deg) ' + height*0.2 + '
 
         $('.prof-box').each(function(){
             var that=$(this);

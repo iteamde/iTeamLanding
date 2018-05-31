@@ -382,3 +382,26 @@ textarea{
 input,textarea:focus{
 	 outline:none;
 }
+#parallax .image-wrapper{
+	min-height: 400px;
+	position: relative;
+}
+
+#parallax .image-wrapper img{
+	position: absolute;
+	width: 400px;
+	height: auto;
+	z-index: -1;
+}
+
+#parallax .image-wrapper:first-child img{
+	top: 0px;
+	right: 100px;
+	transform: rotate3d(1,1,1,16deg);
+}
+
+#parallax .image-wrapper:nth-child(2) img{
+	top: 0px;
+	right: 300px;
+	transform: rotate3d(1,1,1,16deg);
+}
